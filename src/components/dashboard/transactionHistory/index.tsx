@@ -1,6 +1,7 @@
 import { Cell, Pie, PieChart } from 'recharts';
 import { CURRENCY, helper } from '../../../utils';
 import TransactionTable from './TransactionTable';
+import { MetaTags } from '../../../layout/OGgraph';
 
 export const TransactionHistory = () => {
 
@@ -12,6 +13,13 @@ export const TransactionHistory = () => {
 
   return (
     <section className="page-fade-in customScrollBar overflow-y-scroll flex-auto flex flex-col gap-y-3 p-5 h-full">
+      <MetaTags
+        title='Transaction History Page'
+        description=''
+        url=''
+        image=''
+      />
+      
       <div className="flex flex-col">
         <h1 className="text-orange-400 text-lg flex items-center">
           <b>Welcome <span className="italic">Oluwatobi</span></b>
