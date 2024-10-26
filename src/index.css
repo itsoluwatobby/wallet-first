@@ -16,10 +16,58 @@
 }
 
 .customScrollBar::-webkit-scrollbar{
-  width: 5px;
+  width: 4px;
   background: rgb(253, 215, 183);
 }
 
 .customScrollBar::-webkit-scrollbar-thumb {
   background: rgb(255, 195, 147);;
+}
+
+/* 3D text styling */
+.three-d-text {
+  font-family: 'Arial', sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  text-shadow: -1px -1px 0 #d6d6d6, 1px 1px 0 #d6d6d6, 1px -1px 0 #d6d6d6, -1px 1px 0 #d6d6d6;
+}
+
+/* Creating the 3D effect using text shadows */
+/* .three-d-text::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  color: #ff3d00;
+  z-index: -1;
+  text-shadow: -1px -1px 0 #222, 1px 1px 0 #222, 1px -1px 0 #222, -1px 1px 0 #222;
+}
+
+.three-d-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #e8e8e8;
+  z-index: -2;
+  text-shadow: -1px -1px 0 #222, 1px 1px 0 #222, 1px -1px 0 #222, -1px 1px 0 #222;
+} */
+
+/* AnimatedPage.css */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.page-fade-in {
+  animation: fadeIn 1s ease-in-out;
 }

@@ -25,10 +25,20 @@ class Helper {
     }).format(new Date());
   }
   
-  public formatTime(date: Date) {
+  public getFullName(user: { [x:string]: string | null, firstName: string, lastName: string }) {
+    return user.firstName + ' ' + user.lastName
+  }
+
+  public maskCardNumber(cardNumber: string) {
+    const masked = cardNumber.substring(0,14).replaceAll(/[0-9]/g, '*');
+
+    return masked + cardNumber.substring(14);
+  }
+
+  public formatTime(date: string) {
     return new Intl.DateTimeFormat('en', {
       dateStyle: 'long'
-    }).format(date);
+    }).format(new Date(date));
   }
 
   public formatPrice(price:number=0, decimalPlace=0) {

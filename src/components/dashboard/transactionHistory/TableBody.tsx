@@ -1,7 +1,19 @@
-import { transactionHistory } from '../../../utils/history'
 import { CURRENCY, helper, TransactionStatus, TransactionType } from '../../../utils';
 
-export default function TableBody() {
+type TableBodyProps = {
+  transactionHistory: {
+    id: number;
+    title: string;
+    type: string;
+    status: string;
+    date: string;
+    value: number;
+    currency: string;
+    channel: string;
+    category: string;
+  }[]
+}
+export default function TableBody({ transactionHistory }: TableBodyProps) {
 
   const isDebit = (type: string) => {
     return type === TransactionType.Debit;
@@ -13,6 +25,8 @@ export default function TableBody() {
     return 0;
   }
 
+  transactionHistory.sort((a, b) => b.date.localeCompare(a.date));
+  
   return (
     <tbody className="">
       {
@@ -29,9 +43,9 @@ export default function TableBody() {
             </td>
             <td
               className='font-normal p-2'>
-                <span className={`border rounded-full p-0.5 px-1.5 ${status(transaction.status) === 2 ? 'border-green-500 bg-green-100 text-green-600' : status(transaction.status) === 1 ? 'border-orange-500 bg-orange-100 text-orange-600' : 'border-red-500 bg-red-100 text-red-600'}`}>
-                  {transaction.status}
-                </span>
+              <span className={`border rounded-full p-0.5 px-1.5 ${status(transaction.status) === 2 ? 'border-green-500 bg-green-100 text-green-600' : status(transaction.status) === 1 ? 'border-orange-500 bg-orange-100 text-orange-600' : 'border-red-500 bg-red-100 text-red-600'}`}>
+                {transaction.status}
+              </span>
             </td>
             <td
               className="font-normal p-2">{helper.formatTime(transaction.date)}
