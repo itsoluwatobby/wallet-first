@@ -2,7 +2,7 @@ import { Cell, Pie, PieChart } from 'recharts';
 import { CURRENCY, helper } from '../../../utils';
 import TransactionTable from './TransactionTable';
 
-export const MainSection = () => {
+export const TransactionHistory = () => {
 
   const AccountInformation = [
     { color: 'bg-red-600', type: 'Income', fill: 'rgba(250,5,15,0.7)', value: 400 },
@@ -11,7 +11,7 @@ export const MainSection = () => {
   ]
 
   return (
-    <section className="customScrollBar overflow-y-scroll flex-auto flex flex-col gap-y-3 p-5 h-full">
+    <section className="page-fade-in customScrollBar overflow-y-scroll flex-auto flex flex-col gap-y-3 p-5 h-full">
       <div className="flex flex-col">
         <h1 className="text-orange-400 text-lg flex items-center">
           <b>Welcome <span className="italic">Oluwatobi</span></b>

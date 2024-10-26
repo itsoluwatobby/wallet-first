@@ -12,7 +12,7 @@ export const AppContextDataProvider = (
         '(prefers-color-scheme: dark)'
       ).matches ? 'dark' : 'light'
   );
-  const [tabName, setTabName] = useState<SideTabs>(SideTabEnum.Home);
+  const [tabName, setTabName] = useState<SideTabs>(SideTabEnum.Transaction);
 
   const value = {
     theme, setTheme, tabName, setTabName,

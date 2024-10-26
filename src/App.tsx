@@ -7,7 +7,7 @@ function App() {
   const { theme } = useAppContext();
 
   return (
-    <main className={`${theme !== 'light' ? 'bg-white' : 'dark:bg-slate-950 text-white'} w-full h-screen flex transition-colors`}>
+    <main className={`page-fade-in ${theme !== 'light' ? 'bg-white' : 'dark:bg-slate-950 text-white'} w-full h-screen flex transition-colors`}>
       <Routes>
         <Route path='/' element={<AppLayout />}>
           <Route index element={<Dashboard />} />

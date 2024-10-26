@@ -9,3 +9,11 @@ type AppContextProps = {
   setTabName: React.Dispatch<React.SetStateAction<SideTabs>>;
 }
 
+type User = {
+  firstName: string;
+  lastName: string;
+  picture: null;
+  email: string;
+  cardNumber: string;
+  expires: string;
+}

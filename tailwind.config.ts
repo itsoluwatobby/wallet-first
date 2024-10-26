@@ -9,6 +9,9 @@ export default {
 
       'md': '768px',
       // => @media (min-width: 768px) { ... }
+      
+      'mdXl': '968px',
+      // => @media (min-width: 968px) { ... }
 
       'lg': '1024px',
       // => @media (min-width: 1024px) { ... }
