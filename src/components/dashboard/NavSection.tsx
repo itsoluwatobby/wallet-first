@@ -6,7 +6,7 @@ import { AiOutlineTransaction, AiOutlineLogout } from "react-icons/ai";
 import { MdOutlineAccountTree, MdOutlineAccountBalance } from "react-icons/md";
 import { LuPanelLeftOpen, LuPanelRightOpen } from "react-icons/lu";
 import { useState } from "react";
-import { useAppContext } from "../../hooks/useAppContext";
+import { useAppContext, useLogout } from "../../hooks";
 import { IconType } from "react-icons";
 import { SideTabEnum, helper } from "../../utils";
 
@@ -14,6 +14,7 @@ type NavSectionProps = {
   user: User;
 }
 export const NavSection = ({ user }: NavSectionProps) => {
+  const logout = useLogout();
   const [openSideTab, setOpenSideTab] = useState<boolean>(false);
   const { tabName, setTabName } = useAppContext();
 
@@ -71,6 +72,7 @@ export const NavSection = ({ user }: NavSectionProps) => {
       <div className="cursor-pointer rounded-md hover:shadow-md hover:bg-gray-100 p-1 w-fit flex gap-1 items-center shadow-sm">
         <div
           title='profile'
+          onClick={() => setTabName(SideTabEnum.Accounts)}
           className={`flex-auto flex gap-1 items-center ${openSideTab ? '' : 'maxScreen:hidden'}`}>
           <figure className="rounded-full bg-gray-200 flex items-center justify-center p-1 w-[2.8rem] h-[2.8rem] shadow-sm">
             {
@@ -88,6 +90,7 @@ export const NavSection = ({ user }: NavSectionProps) => {
 
         <AiOutlineLogout
           title='logout'
+          onClick={logout}
           className='flex-none text-3xl bg-gray-200 p-1 cursor-pointer rounded-md'
         />
       </div>

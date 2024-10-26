@@ -18,7 +18,6 @@ export const Card = ({ user }: CardProps) => {
       </div>
 
       <span className="three-d-text" data-text='WALLET FIRST'>WALLET FIRST</span>
-      {/* <span className="text-center tracking-widest font-bold text-[#ffd6a8]">WALLET FIRST</span> */}
 
       <div className="w-full px-3 flex flex-col gap-1">
         <p className="flex w-full items-center justify-between">

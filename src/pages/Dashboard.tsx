@@ -7,7 +7,7 @@ import {
   TransactionHistory,
   UserInformation,
 } from "../components/dashboard";
-import { useAppContext } from "../hooks/useAppContext";
+import { useAppContext } from "../hooks";
 
 export default function Dashboard() {
   const { tabName } = useAppContext();
