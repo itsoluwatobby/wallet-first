@@ -1,3 +1,8 @@
+
+type ValueObj = {
+  [index: string]: string | number | Date,
+  value: number,
+}
 class Helper {
   public reduceTextLength(content: string, maxLength=20, option:('letter'|'word')='letter') {
     let responseOutput = '';
@@ -14,8 +19,24 @@ class Helper {
     return name[0].toUpperCase();
   }
 
+  public getCurrentDate() {
+    return new Intl.DateTimeFormat('en', {
+      dateStyle: 'full'
+    }).format(new Date());
+  }
+  
+  public formatTime(date: Date) {
+    return new Intl.DateTimeFormat('en', {
+      dateStyle: 'long'
+    }).format(date);
+  }
+
   public formatPrice(price:number=0, decimalPlace=0) {
     return price.toFixed(decimalPlace).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+  }
+
+  public totalAmount(account: ValueObj[]) {
+    return this.formatPrice(account.reduce((acc, init) => acc + init.value, 0), 2);
   }
 
   jsonParseValue = <T>(value: string): T => {

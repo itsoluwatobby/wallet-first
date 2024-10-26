@@ -10,6 +10,7 @@ type ButtonTabsProps = {
 export default function ButtonTabs({ name, Icon, handleCLick, openSideTab }: ButtonTabsProps) {
   return (
     <button
+    title={name}
     className='w-full p-4 flex items-center gap-2 rounded-md focus:text-white focus:bg-blue-500 focus:shadow-md hover:scale-[1.002] transition-all text-sm relative'
     onClick={handleCLick}
     >
