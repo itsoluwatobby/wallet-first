@@ -1,6 +1,9 @@
 import { MetaTags } from "../../../layout/OGgraph"
 
-export const FundTransfer = () => {
+type FundTransferProps = {
+  user: User;
+}
+export const FundTransfer = ({ user }: FundTransferProps) => {
   
   return (
     <section className="page-fade-in customScrollBar overflow-y-scroll flex-auto flex flex-col gap-y-3 p-5 h-full">
@@ -11,7 +14,7 @@ export const FundTransfer = () => {
         image=''
       />
       
-      FundTransfer
+      FundTransfer {user.firstName}
     </section>
   )
 }
