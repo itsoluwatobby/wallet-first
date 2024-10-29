@@ -69,12 +69,12 @@ export const NavSection = ({ user }: NavSectionProps) => {
         </div>
       </div>
 
-      <div className="cursor-pointer rounded-md hover:shadow-md hover:bg-gray-100 p-1 w-fit flex gap-1 items-center shadow-sm">
+      <div className="cursor-pointer rounded-md hover:shadow-md hover:bg-gray-100 p-1 w-full flex gap-1 items-center shadow-sm">
         <div
           title='profile'
           onClick={() => setTabName(SideTabEnum.Accounts)}
           className={`flex-auto flex gap-1 items-center ${openSideTab ? '' : 'maxScreen:hidden'}`}>
-          <figure className="rounded-full bg-gray-200 flex items-center justify-center p-1 w-[2.8rem] h-[2.8rem] shadow-sm">
+          <figure className="rounded-full bg-gray-200 flex items-center justify-center w-[2.8rem] h-[2.8rem] shadow-sm">
             {
               user.picture ?
                 <img src={user.picture} alt="" className='w-full h-full object-cover rounded-full' />

@@ -1,19 +1,10 @@
 import { CURRENCY, helper, TransactionStatus, TransactionType } from '../../../utils';
 
 type TableBodyProps = {
-  transactionHistory: {
-    id: number;
-    title: string;
-    type: string;
-    status: string;
-    date: string;
-    value: number;
-    currency: string;
-    channel: string;
-    category: string;
-  }[]
+  transactionHistory: TransactionPropType[];
+  viewTransactionReceipt: (transaction: TransactionPropType) => void;
 }
-export default function TableBody({ transactionHistory }: TableBodyProps) {
+export default function TableBody({ transactionHistory, viewTransactionReceipt }: TableBodyProps) {
 
   const isDebit = (type: string) => {
     return type === TransactionType.Debit;
@@ -32,6 +23,7 @@ export default function TableBody({ transactionHistory }: TableBodyProps) {
       {
         transactionHistory.map((transaction) => (
           <tr key={transaction.id}
+            onClick={() => viewTransactionReceipt(transaction)}
             className="text-[11px] hover:opacity-90 cursor-pointer border even:bg-orange-50"
           >
             <td

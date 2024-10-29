@@ -23,5 +23,5 @@ export enum TransactionStatus {
 export enum TransactionType {
   Credit = 'Credit',
   Debit = 'Debit',
-  Charges = 'Charges',
+  'Bank Deposit' = 'Bank Deposit',
 }

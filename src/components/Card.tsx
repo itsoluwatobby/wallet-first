@@ -8,7 +8,7 @@ type CardProps = {
 export const Card = ({ user }: CardProps) => {
 
   return (
-    <article className="rounded-xl text-xs p-3 w-full h-40 bg-gradient-to-tr from-orange-200 from-[20%] via-pink-100 to-orange-300 shadow-sm relative flex  flex-col justify-between">
+    <article className="rounded-xl max-w-80 text-xs p-3 h-40 bg-gradient-to-tr from-orange-200 from-[20%] via-pink-100 to-orange-300 shadow-sm relative flex  flex-col justify-between">
       <PiWebhooksLogoLight 
       className="absolute right-2 text-xl"
       />

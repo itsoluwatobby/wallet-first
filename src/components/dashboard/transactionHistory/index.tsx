@@ -2,8 +2,16 @@ import { Cell, Pie, PieChart } from 'recharts';
 import { CURRENCY, helper } from '../../../utils';
 import TransactionTable from './TransactionTable';
 import { MetaTags } from '../../../layout/OGgraph';
+import { Receipt } from './Receipt';
+import { useRef, useState } from 'react';
 
-export const TransactionHistory = () => {
+type TransactionHistoryProps = {
+  user: User;
+}
+
+export const TransactionHistory = ({ user }: TransactionHistoryProps) => {
+  const [transact, setTransact] = useState<TransactionPropType>();
+  const dialogModalRef = useRef<HTMLDialogElement>(null);
 
   const AccountInformation = [
     { color: 'bg-red-600', type: 'Income', fill: 'rgba(250,5,15,0.7)', value: 400 },
@@ -11,8 +19,13 @@ export const TransactionHistory = () => {
     { color: 'bg-orange-300', type: 'Others', fill: 'rgba(250,155,5,0.5)', value: 150 },
   ]
 
+  const viewTransactionReceipt = (transaction: TransactionPropType) => {
+    setTransact(transaction)
+    dialogModalRef.current?.showModal()
+  };
+
   return (
-    <section className="page-fade-in customScrollBar overflow-y-scroll flex-auto flex flex-col gap-y-3 p-5 h-full">
+    <section className="page-fade-in customScrollBar overflow-y-scroll flex-auto flex flex-col gap-y-3 p-5 h-full relative">
       <MetaTags
         title='Transaction History Page'
         description=''
@@ -22,7 +35,7 @@ export const TransactionHistory = () => {
       
       <div className="flex flex-col">
         <h1 className="text-orange-400 text-lg flex items-center">
-          <b>Welcome <span className="italic">Oluwatobi</span></b>
+          <b>Welcome <span className="italic">{user.firstName}</span></b>
         </h1>
         <span className="text-xs text-gray-500">Manage your transaction history efficiently</span>
         <span className='text-gray-500 text-end text-xs mt-2'>{helper.getCurrentDate()}</span>
@@ -66,10 +79,20 @@ export const TransactionHistory = () => {
           </button>
         </div>
 
-        <TransactionTable />
+        <TransactionTable
+          viewTransactionReceipt={viewTransactionReceipt}
+        />
 
       </article>
 
+      {
+        transact ?
+        <Receipt
+          transaction={transact}
+          dialogModalRef={dialogModalRef}
+        /> : null
+      }
+    
     </section>
   )
 }

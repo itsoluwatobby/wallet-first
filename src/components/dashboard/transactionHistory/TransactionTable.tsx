@@ -1,9 +1,9 @@
 import { GiPayMoney, GiReceiveMoney, GiMoneyStack } from "react-icons/gi";
 import { transactionHistory } from "../../../utils/history";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TableHead from "./TableHead";
 import TableBody from "./TableBody";
-import { CURRENCY, helper } from "../../../utils";
+import { CURRENCY, helper, TransactionStatus } from "../../../utils";
 
 const KeyValues = {
   Total: 'Total',
@@ -12,8 +12,13 @@ const KeyValues = {
 } as const;
 
 type TransactionTypes = keyof typeof KeyValues;
-export default function TransactionTable() {
+
+type TransactionTableProps = {
+  viewTransactionReceipt: (transaction: TransactionPropType) => void;
+}
+export default function TransactionTable({ viewTransactionReceipt }: TransactionTableProps) {
   const [keyName, setKeyName] = useState<keyof typeof KeyValues>(KeyValues.Total);
+  const [filteredHistory, setFilteredHistory] = useState<TransactionPropType[]>([]);
 
   const iconClass = 'text-4xl bg-orange-100 rounded-full p-1';
 
@@ -23,12 +28,12 @@ export default function TransactionTable() {
     Credit: <GiReceiveMoney className={`${iconClass} text-green-800`} />,
   };
 
-  const filteredHistory = (type: TransactionTypes) => {
-    return transactionHistory.filter((transaction) => {
-      if (type === KeyValues.Total) return transaction;
-      return transaction.type === type;
-    });
-  };
+  useEffect(() => {
+    setFilteredHistory(transactionHistory.filter((transaction) => {
+      if (keyName === KeyValues.Total) return transaction;
+      return transaction.type === keyName && transaction.status !== TransactionStatus.Failed;
+    }));
+  }, [keyName])
 
   return (
     <div className='w-full text-sm flex flex-col gap-y-6'>
@@ -51,7 +56,7 @@ export default function TransactionTable() {
           <div className="flex flex-col gap-y-1 font-semibold">
             <span className="capitalize">{KeyValues[keyName]}</span>
             <span className="text-gray-700 font-semibold text-[11px]">
-              {CURRENCY['DOLLAR']}{helper.totalAmount(filteredHistory(keyName))}
+              {CURRENCY['DOLLAR']}{helper.totalAmount(filteredHistory)}
             </span>
           </div>
 
@@ -62,7 +67,10 @@ export default function TransactionTable() {
       <div className="hideBars w-full overflow-x-scroll">
         <table className="w-full border border-collapse">
           <TableHead />
-          <TableBody transactionHistory={transactionHistory} />
+          <TableBody 
+            transactionHistory={transactionHistory}
+            viewTransactionReceipt={viewTransactionReceipt}
+          />
         </table>
       </div>
     </div>

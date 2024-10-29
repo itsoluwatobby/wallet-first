@@ -1,4 +1,4 @@
-export const transactionHistory = [
+export const transactionHistory: TransactionPropType[] = [
   {
     id: 1,
     title: 'TakeN\'Eat',
@@ -102,7 +102,7 @@ export const transactionHistory = [
     id: 10,
     title: 'Cash withdrawal',
     type: 'Debit',
-    status: 'Success',
+    status: 'Failed',
     date: '2024-10-02T18:25:22.005Z',
     value: 200,
     currency: 'DOLLAR',
@@ -130,5 +130,16 @@ export const transactionHistory = [
     currency: 'DOLLAR',
     channel: 'Transfer',
     category: 'Food Stuff',
+  },
+  {
+    id: 13,
+    title: 'Deposit',
+    type: 'Bank Deposit',
+    status: 'Success',
+    date: '2024-08-02T22:03:22.005Z',
+    value: 250,
+    currency: 'DOLLAR',
+    channel: 'Transfer',
+    category: 'Bank Deposit',
   },
 ]

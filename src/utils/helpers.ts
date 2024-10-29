@@ -35,9 +35,10 @@ class Helper {
     return masked + cardNumber.substring(14);
   }
 
-  public formatTime(date: string) {
+  public formatTime(date: string, includeTime = false) {
     return new Intl.DateTimeFormat('en', {
-      dateStyle: 'long'
+      dateStyle: 'long',
+      timeStyle: includeTime ? 'long' : undefined,
     }).format(new Date(date));
   }
 
